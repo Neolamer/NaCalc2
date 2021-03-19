@@ -1,5 +1,6 @@
 package com.oveon.nacalc2
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         button0.setOnClickListener{ setTextFields("0")}
         button1.setOnClickListener{ setTextFields("1")}
@@ -28,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonPlus.setOnClickListener{
             if(calculation.text != ""){
-                var checkStr: String = calculation.text.toString().takeLast(1)
+                val checkStr: String = calculation.text.toString().takeLast(1)
                 if(checkStr != "+" && checkStr != "-" && checkStr != "*" && checkStr != "/"){
                     setTextFields("+")
                 }
@@ -36,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
         buttonMinus.setOnClickListener{
             if(calculation.text != ""){
-                var checkStr: String = calculation.text.toString().takeLast(1)
+                val checkStr: String = calculation.text.toString().takeLast(1)
                 if(checkStr != "+" && checkStr != "-" && checkStr != "*" && checkStr != "/"){
                     setTextFields("-")
                 }
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
         buttonDot.setOnClickListener{
             if(calculation.text != ""){
-                var checkStr: String = calculation.text.toString().takeLast(1)
+                val checkStr: String = calculation.text.toString().takeLast(1)
                 if(checkStr != "+" && checkStr != "-" && checkStr != "*" && checkStr != "/"){
                     setTextFields(".")
                 }
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
         buttonDivision.setOnClickListener{
             if(calculation.text != ""){
-                var checkStr: String = calculation.text.toString().takeLast(1)
+                val checkStr: String = calculation.text.toString().takeLast(1)
                 if(checkStr != "+" && checkStr != "-" && checkStr != "*" && checkStr != "/"){
                     setTextFields("/")
                 }
@@ -61,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonMultiplication.setOnClickListener{
             if(calculation.text != ""){
-                var checkStr: String = calculation.text.toString().takeLast(1)
+                val checkStr: String = calculation.text.toString().takeLast(1)
                 if(checkStr != "+" && checkStr != "-" && checkStr != "*" && checkStr != "/"){
                     setTextFields("*")
                 }
@@ -83,8 +85,8 @@ class MainActivity : AppCompatActivity() {
 
         buttonEqual.setOnClickListener{
             if(calculation.text != ""){
-                var str: String = calculation.text.toString()
-                var checkStr: String = str.takeLast(1)
+                val str: String = calculation.text.toString()
+                val checkStr: String = str.takeLast(1)
                 if(checkStr == "+" || checkStr == "-" || checkStr == "*" || checkStr == "/"){
                     calculation.text = str.substring(0, str.length - 1)
                 }
@@ -97,13 +99,12 @@ class MainActivity : AppCompatActivity() {
                     result_text.text = longResult.toString()
                 }
             }catch (e: Exception){
-                Log.d("ERROR ", " CODE in ${e.message}");
+                Log.d("ERROR ", " CODE in ${e.message}")
             }
         }
     }
 
-    fun setTextFields(str: String){
+    private fun setTextFields(str: String){
         calculation.append(str)
     }
-
 }
